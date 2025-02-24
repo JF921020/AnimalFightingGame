@@ -1,6 +1,48 @@
+import Animal.*;
+
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("請輸入想選的動物編號(1.狗 2.貓 3.熊 4.老虎): ");
+        int choose = scanner.nextInt();
 
-        System.out.println("Hello, World!");
+        Animal player = switch (choose) {
+            case 1 -> new Dog();
+            case 2 -> new Cat();
+            case 3 -> new Bear();
+            case 4 -> new Tiger();
+            default -> null;
+        };
+
+        if (player == null) {
+            System.out.println("輸入不合法");
+            scanner.close();
+            return;
+        }
+
+        Boss boss = new Boss();
+        Random random = new Random();
+        int round = 1;
+
+        while (player.HP > 0 && boss.HP > 0) {
+            boss.choice = random.nextInt(3) + 1;
+            System.out.print("請輸入攻擊編號(1.剪刀 2.石頭 3.布): ");
+            player.choice = scanner.nextInt();
+
+            player.judge(player, boss);
+
+            if (player.HP <= 0) {
+                System.out.println("你輸了");
+            } else if (boss.HP <= 0) {
+                System.out.println("你贏了");
+            }
+
+            round++;
+        }
+
+        scanner.close();
     }
 }
