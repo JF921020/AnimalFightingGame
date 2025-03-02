@@ -36,7 +36,9 @@ public class Main {
 
             while (player.HP > 0 && boss.HP > 0) {
                 boss.choice = random.nextInt(3) + 1;
+                player.showSkill();
                 System.out.print("\u001B[32m請輸入技能編號(1~4): ");
+
                 player.choice = scanner.nextInt();
 
                 player.judge(player, boss);
