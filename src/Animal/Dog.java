@@ -5,6 +5,23 @@ public class Dog extends Animal {
         super("狗");
         HP = 100;
         rate = 0.4;
+
+        super.skill1.name = "咬住";
+        super.skill2.name = "狂犬突襲";
+        super.skill3.name = "撕裂";
+        super.skill4.name = "瘋狗亂撞";
+
+        super.skill1.count = 20;
+        super.skill2.count = 7;
+        super.skill3.count = 10;
+        super.skill4.count = 15;
+
+
+        System.out.println("\u001B[35m玩家(" + name + ") HP: " +HP);
+        System.out.println("\u001B[33m技能 1 : " + skill1.name + " 傷害 : " + skill1.count);
+        System.out.println("\u001B[33m技能 2 : " + skill2.name + " 傷害 : " + skill2.count);
+        System.out.println("\u001B[33m技能 3 : " + skill3.name + " 傷害 : " + skill3.count);
+        System.out.println("\u001B[33m技能 4 : " + skill4.name + " 傷害 : " + skill4.count);
     }
 
 

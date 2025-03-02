@@ -19,6 +19,8 @@ public class Main {
                 default -> null;
             };
 
+
+
             if (player == null) {
                 System.out.println("\u001B[31m輸入不合法");
                 scanner.close();
@@ -28,6 +30,9 @@ public class Main {
             Boss boss = new Boss();
             Random random = new Random();
             int round = 1;
+
+
+            System.out.println("\u001B[35m魔王 HP: " + boss.HP);
 
             while (player.HP > 0 && boss.HP > 0) {
                 boss.choice = random.nextInt(3) + 1;
