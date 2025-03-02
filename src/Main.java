@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("\u001B[32m請輸入想選的動物編號(1.狗 2.貓 3.熊 4.老虎): ");
+        System.out.print("\u001B[32m請輸入想選的動物編號(\u001B[34m1.狗 2.貓 3.熊 4.老虎\u001B[32m): ");
         int choose = scanner.nextInt();
 
         Animal player = switch (choose) {

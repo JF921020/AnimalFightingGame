@@ -7,60 +7,46 @@ public class Tiger extends Animal {
         rate = 0.1;
     }
 
-//    @Override
-//    public int attack() {
-//        if (random.nextDouble() < 0.1) {// 10% 機率觸發技能
-//            System.out.println("玩家(" + name + ")使用了強力攻擊");
-//            return useSkill();
-//        } else {
-//            System.out.println("玩家(" + name + ")使用了普通攻擊");
-//            System.out.println("Boss受到了攻擊，生命值-10");
-//            return 10;
-//        }
-//    }
+
 
     @Override
     public int useSkill1() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了咬住! 暴擊! Boss HP -40");
-            return 40;
-        }else {
-            System.out.println("玩家(" + name + ")使用了咬住! Boss HP -20");
-            return 20;
+        if (random.nextDouble() < 0.4) {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了猛虎撲殺! 暴擊! 魔王 HP -45");
+            return 45;
+        } else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了猛虎撲殺! 魔王 HP -22");
+            return 22;
         }
-
     }
 
-    @Override
     public int useSkill2() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! 暴擊! Boss HP -15");
-            return 15;
-        }else {
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! Boss HP -7");
-            return 7;
-        }
-    }
-
-    @Override
-    public int useSkill3() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! 暴擊! Boss HP -20");
-            return 20;
-        }else {
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! Boss HP -10");
-            return 10;
-        }
-    }
-
-    @Override
-    public int useSkill4() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! 暴擊! Boss HP -30");
+        if (random.nextDouble() < 0.4) {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了虎爪連擊! 暴擊! 魔王 HP -30");
             return 30;
-        }else {
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! Boss HP -15");
+        } else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了虎爪連擊! 魔王 HP -15");
             return 15;
+        }
+    }
+
+    public int useSkill3() {
+        if (random.nextDouble() < 0.4) {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了猛虎怒吼! 暴擊! 魔王 HP -35");
+            return 35;
+        } else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了猛虎怒吼! 魔王 HP -18");
+            return 18;
+        }
+    }
+
+    public int useSkill4() {
+        if (random.nextDouble() < 0.4) {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了疾風猛虎爪! 暴擊! 魔王 HP -50");
+            return 50;
+        } else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了疾風猛虎爪! 魔王 HP -25");
+            return 25;
         }
     }
 }

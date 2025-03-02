@@ -35,7 +35,7 @@ public abstract class Animal {
         user.HP -= boss.attack();
 
         System.out.println("\u001B[35m玩家 HP: " + user.HP);
-        System.out.println("\u001B[35mBoss HP: " + boss.HP);
+        System.out.println("\u001B[35m魔王 HP: " + boss.HP);
     }
 
     private int getMoveName(int choice) {
