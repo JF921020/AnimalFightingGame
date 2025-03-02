@@ -1,44 +1,53 @@
 package Animal;
 import java.util.Random;
 
+// 抽象類別 Animal，代表所有玩家可選擇的動物角色
 public abstract class Animal {
     protected String name;
     public int HP = 20;
     protected Random random = new Random();
     public int choice = 0;
+    public double rate = 0;
 
     public Animal(String name) {
         this.name = name;
     }
 
-    public abstract int attack();
+    //public abstract int attack();
 
-    public abstract int useSkill();
+    public abstract int useSkill1();
+    public abstract int useSkill2();
+    public abstract int useSkill3();
+    public abstract int useSkill4();
+
 
     public void judge(Animal user, Boss boss) {
-        System.out.println("玩家" + user.name + "出招: " + getMoveName(user.choice));
-        System.out.println("Boss出招: " + getMoveName(boss.choice));
-
-        if (user.choice == boss.choice) {
-            System.out.println("無事發生");
-        } else if ((user.choice == 1 && boss.choice == 3) ||
-                (user.choice == 2 && boss.choice == 1) ||
-                (user.choice == 3 && boss.choice == 2)) {
-            boss.HP -= user.attack();
-        } else {
-            user.HP -= boss.attack();
+        if (user.choice == 1) {
+            boss.HP -= user.useSkill1();
+        } else if (user.choice == 2) {
+            boss.HP -= user.useSkill2();
+        }else if (user.choice == 3) {
+            boss.HP -= user.useSkill3();
+        }else if (user.choice == 4) {
+            boss.HP -= user.useSkill4();
         }
+
+        user.HP -= boss.attack();
 
         System.out.println("玩家 HP: " + user.HP);
         System.out.println("Boss HP: " + boss.HP);
     }
 
-    private String getMoveName(int choice) {
-        switch (choice) {
-            case 1: return "剪刀";
-            case 2: return "石頭";
-            case 3: return "布";
-            default: return "未知";
+    private int getMoveName(int choice) {
+        if (choice == 1) {
+            return useSkill1();
+        } else if (choice == 2) {
+            return useSkill2();
+        } else if (choice == 3) {
+            return useSkill3();
+        } else if (choice == 4) {
+            return useSkill4();
         }
+        return 0;
     }
 }

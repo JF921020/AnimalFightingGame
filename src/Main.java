@@ -29,7 +29,7 @@ public class Main {
 
         while (player.HP > 0 && boss.HP > 0) {
             boss.choice = random.nextInt(3) + 1;
-            System.out.print("請輸入攻擊編號(1.剪刀 2.石頭 3.布): ");
+            System.out.print("請輸入技能編號(1~4): ");
             player.choice = scanner.nextInt();
 
             player.judge(player, boss);
