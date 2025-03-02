@@ -22,10 +22,10 @@ public class Dog extends Animal {
     @Override
     public int useSkill1() {
         if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了咬住! 暴擊! Boss HP -40");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了咬住! 暴擊! Boss HP -40");
             return 40;
         }else {
-            System.out.println("玩家(" + name + ")使用了咬住! Boss HP -20");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了咬住! Boss HP -20");
             return 20;
         }
 
@@ -34,10 +34,10 @@ public class Dog extends Animal {
     @Override
     public int useSkill2() {
         if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了狂犬突襲! 暴擊! Boss HP -15");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了狂犬突襲! 暴擊! Boss HP -15");
             return 15;
         }else {
-            System.out.println("玩家(" + name + ")使用了狂犬突襲! Boss HP -7");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了狂犬突襲! Boss HP -7");
             return 7;
         }
     }
@@ -45,10 +45,10 @@ public class Dog extends Animal {
     @Override
     public int useSkill3() {
         if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了撕裂! 暴擊! Boss HP -20");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了撕裂! 暴擊! Boss HP -20");
             return 20;
         }else {
-            System.out.println("玩家(" + name + ")使用了撕裂! Boss HP -10");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了撕裂! Boss HP -10");
             return 10;
         }
     }
@@ -56,10 +56,10 @@ public class Dog extends Animal {
     @Override
     public int useSkill4() {
         if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! 暴擊! Boss HP -30");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了瘋狗亂撞! 暴擊! Boss HP -30");
             return 30;
         }else {
-            System.out.println("玩家(" + name + ")使用了瘋狗亂撞! Boss HP -15");
+            System.out.println("\u001B[34m玩家(" + name + ")使用了瘋狗亂撞! Boss HP -15");
             return 15;
         }
     }

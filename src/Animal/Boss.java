@@ -9,12 +9,10 @@ public class Boss {
 
         public int attack() {
             if (random.nextDouble() < 0.3) { // 30% 機率施放技能攻擊
-                System.out.println("Boss使用了暴擊攻擊!");
-                System.out.println("玩家 HP -15");
+                System.out.println("\u001B[31mBoss使用了暴擊攻擊! 玩家 HP -15");
                 return 15;
             } else {
-                System.out.println("Boss使用了普通攻擊");
-                System.out.println("玩家 HP -5");
+                System.out.println("\u001B[31mBoss使用了普通攻擊! 玩家 HP -5");
                 return 5;
             }
         }
