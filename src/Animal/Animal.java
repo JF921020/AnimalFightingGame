@@ -66,7 +66,4 @@ public abstract class Animal {
     }
 }
 
-class Skill {
-    public String name;
-    public int count;
-}
+
