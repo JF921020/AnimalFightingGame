@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         boolean playAgain;
         do{
-            System.out.print("\u001B[32m請輸入想選的動物編號(\u001B[34m1.狗 2.貓 3.熊 4.老虎\u001B[32m): ");
+            System.out.print(ConsoleColor.GREEN + "請輸入想選的動物編號(1.狗 2.貓 3.熊 4.老虎): " + ConsoleColor.RESET);
             int choose = scanner.nextInt();
 
             Animal player = switch (choose) {
@@ -22,7 +22,7 @@ public class Main {
 
 
             if (player == null) {
-                System.out.println("\u001B[31m輸入不合法");
+                System.out.println(ConsoleColor.RED + "輸入不合法" + ConsoleColor.RESET);
                 scanner.close();
                 return;
             }
@@ -32,27 +32,27 @@ public class Main {
             int round = 1;
 
 
-            System.out.println("\u001B[35m魔王 HP: " + boss.HP);
+            System.out.println(ConsoleColor.PURPLE + "魔王 HP: " + boss.hp + "/200" + ConsoleColor.RESET);
 
-            while (player.HP > 0 && boss.HP > 0) {
+            while (player.hp > 0 && boss.hp > 0) {
                 boss.choice = random.nextInt(3) + 1;
                 player.showSkill();
-                System.out.print("\u001B[32m請輸入技能編號(1~4): ");
+                System.out.print(ConsoleColor.GREEN + "請輸入技能編號(1~4): " + ConsoleColor.RESET);
 
                 player.choice = scanner.nextInt();
 
                 player.judge(player, boss);
 
-                if (player.HP <= 0) {
-                    System.out.println("\u001B[31m你輸了");
-                } else if (boss.HP <= 0) {
-                    System.out.println("\u001B[33m你贏了");
+                if (player.hp <= 0) {
+                    System.out.println(ConsoleColor.RED + "你輸了" + ConsoleColor.RESET);
+                } else if (boss.hp <= 0) {
+                    System.out.println(ConsoleColor.YELLOW + "你贏了" + ConsoleColor.RESET);
                 }
 
                 round++;
             }
             while (true) {
-                System.out.print("\u001B[33m是否再玩一次? (y/n): ");
+                System.out.print(ConsoleColor.YELLOW + "是否再玩一次? (y/n): " + ConsoleColor.RESET);
                 String input = scanner.next().toLowerCase();
                 if (input.equals("y")) {
                     playAgain = true;
@@ -61,7 +61,7 @@ public class Main {
                     playAgain = false;
                     break;
                 } else {
-                    System.out.println("\u001B[31m無效輸入，請輸入 'y' 或 'n'!");
+                    System.out.println(ConsoleColor.RED + "無效輸入，請輸入 'y' 或 'n'!" + ConsoleColor.RESET);
                 }
             }
 
@@ -69,7 +69,7 @@ public class Main {
 
 
 
-        System.out.println("感謝遊玩!");
+        System.out.println(ConsoleColor.YELLOW + "感謝遊玩!" + ConsoleColor.RESET);
         scanner.close();
     }
 }

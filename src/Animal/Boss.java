@@ -3,7 +3,7 @@ package Animal;
 import java.util.Random;
 
 public class Boss {
-        public int HP = 200;
+        public int hp = 200;
         public int choice = 0;
         protected Random random = new Random();
 
