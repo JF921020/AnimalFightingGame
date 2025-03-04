@@ -1,9 +1,11 @@
 package Animal;
 import java.util.Random;
+import java.util.Scanner;
 
 
 // 抽象類別 Animal，代表所有玩家可選擇的動物角色
 public abstract class Animal {
+    Scanner scanner = new Scanner(System.in);
     protected String name;
     public int hp = 20;
     public int mp = 10;
@@ -16,6 +18,8 @@ public abstract class Animal {
     public Skill skill2;
     public Skill skill3;
     public Skill skill4;
+    public Props HPprops;
+    public Props MPprops;
 
     public Animal(String name) {
         this.name = name;
@@ -23,14 +27,80 @@ public abstract class Animal {
         this.skill2 = new Skill();
         this.skill3 = new Skill();
         this.skill4 = new Skill();
+        this.HPprops = new Props();
+        this.MPprops = new Props();
     }
 
-    //public abstract int attack();
 
-    public abstract int useSkill1();
-    public abstract int useSkill2();
-    public abstract int useSkill3();
-    public abstract int useSkill4();
+    public int useSkill1() {
+        if (random.nextDouble() < rate) {// 40% 機率觸發技能
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill1.name + "! 暴擊! 魔王 HP -" + skill1.damage * 2);
+            return skill1.damage * 2;
+        }else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill1.name + "! 魔王 HP -" + skill1.damage );
+            return skill1.damage;
+        }
+
+    }
+
+    public int useSkill2() {
+        if (random.nextDouble() < rate) {// 40% 機率觸發技能
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill2.name + "! 暴擊! 魔王 HP -" + skill2.damage * 2);
+            return skill2.damage * 2;
+        }else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill2.name + "! 魔王 HP -" + skill2.damage );
+            return skill2.damage;
+        }
+
+    }
+
+    public int useSkill3() {
+        if (random.nextDouble() < rate) {// 40% 機率觸發技能
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill3.name + "! 暴擊! 魔王 HP -" + skill3.damage * 2);
+            return skill3.damage * 2;
+        }else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill3.name + "! 魔王 HP -" + skill3.damage );
+            return skill3.damage;
+        }
+
+    }
+
+    public int useSkill4() {
+        if (random.nextDouble() < rate) {// 40% 機率觸發技能
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill4.name + "! 暴擊! 魔王 HP -" + skill4.damage * 2);
+            return skill4.damage * 2;
+        }else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + skill4.name + "! 魔王 HP -" + skill4.damage );
+            return skill4.damage;
+        }
+
+    }
+
+    public int useHPprops() {
+        int actualRecovery = (maxHp-hp);
+        HPprops.propsCount -= 1;
+        if(actualRecovery >= HPprops.recovery){
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + "回血道具" + "!  HP +" + HPprops.recovery );
+            return HPprops.recovery;
+        }else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + "回血道具" + "!  HP +" + actualRecovery );
+            return actualRecovery;
+        }
+
+    }
+
+    public int useMPprops() {
+        int actualRecovery = (maxMP-mp);
+        MPprops.propsCount -= 1;
+        if(actualRecovery >= MPprops.recovery){
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + "回魔道具" + "!  MP +" + MPprops.recovery );
+            return MPprops.recovery;
+        }else {
+            System.out.println("\u001B[34m玩家(" + name + ")使用了" + "回魔道具" + "!  MP +" + actualRecovery );
+            return actualRecovery;
+        }
+
+    }
 
 
     public void judge(Animal user, Boss boss) {
@@ -50,6 +120,27 @@ public abstract class Animal {
             user.mp -= user.skill4.mpConsume;
             boss.hp -= user.useSkill4();
             user.hp -= boss.attack();
+        }else if (user.choice == 5) {
+            System.out.print(ConsoleColor.GREEN + "請輸入道具編號(I.回血道具 數量:" + HPprops.propsCount + " II.回魔道具 數量:" + MPprops.propsCount+ "):" + ConsoleColor.RESET);
+            int chooseProps = scanner.nextInt();
+            if(chooseProps == 1){
+                if(HPprops.propsCount > 0){
+                    user.hp += user.useHPprops();
+                    user.hp -= boss.attack();
+                }else if(HPprops.propsCount == 0){
+                    System.out.println(ConsoleColor.RED + "道具不足!!" + ConsoleColor.RESET);
+                }
+
+            }
+            if(chooseProps == 2){
+                if(MPprops.propsCount > 0){
+                    user.mp += user.useMPprops();
+                    user.hp -= boss.attack();
+                }else if(MPprops.propsCount == 0){
+                    System.out.print(ConsoleColor.RED + "道具不足!!" + ConsoleColor.RESET);
+                }
+            }
+
         }else{
             System.out.println(ConsoleColor.RED + "技能施放失敗" + ConsoleColor.RESET);
         }
@@ -78,5 +169,18 @@ public abstract class Animal {
     }
 
 }
+
+class Props {
+    public String name;
+    public int propsCount = 3;
+    public int recovery = 50;
+}
+
+class  Skill {
+    public String name;
+    public int damage;
+    public int mpConsume;
+}
+
 
 
