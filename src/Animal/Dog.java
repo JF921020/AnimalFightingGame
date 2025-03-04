@@ -24,7 +24,7 @@ public class Dog extends Animal {
         super.skill4.mpConsume = 20;
 
 
-        showUserHpAndMp( hp, maxHp, mp, maxMP, name);
+        showUserHpAndMp(hp, maxHp, mp, maxMP, name);
 
     }
 }

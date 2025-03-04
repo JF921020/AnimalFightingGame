@@ -22,7 +22,7 @@ public class Cat extends Animal {
         super.skill3.mpConsume = 10;
         super.skill4.mpConsume = 20;
 
-        showUserHpAndMp( hp, maxHp, mp, maxMP, name);
+        showUserHpAndMp(hp, maxHp, mp, maxMP, name);
 
     }
 }
