@@ -21,10 +21,16 @@ public class Dog extends Animal {
         super.skill1.mpConsume = 0;
         super.skill2.mpConsume = 5;
         super.skill3.mpConsume = 10;
-        super.skill4.mpConsume = 20;
+        super.skill4.mpConsume = 30;
 
 
-        showUserHpAndMp(hp, maxHp, mp, maxMP, name);
+        showHpAndMp(hp, maxHp, mp, maxMP);
 
+    }
+
+    @Override
+    public void showDetail() {
+        showSkill();
+        System.out.println("-----------------------------------");
     }
 }
