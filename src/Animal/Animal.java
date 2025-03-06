@@ -33,49 +33,10 @@ public abstract class Animal {
     }
 
 
-    public int useSkill1() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("\u001B[34m" + name + "使用了" + skill1.name + "! 暴擊! 傷害" + skill1.damage * 2);
-            return skill1.damage * 2;
-        } else {
-            System.out.println("\u001B[34m" + name + "使用了" + skill1.name + "! 傷害" + skill1.damage);
-            return skill1.damage;
-        }
-
-    }
-
-    public int useSkill2() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("\u001B[34m" + name + "使用了" + skill2.name + "! 暴擊! 傷害" + skill2.damage * 2);
-            return skill2.damage * 2;
-        } else {
-            System.out.println("\u001B[34m" + name + "使用了" + skill2.name + "! 傷害" + skill2.damage);
-            return skill2.damage;
-        }
-
-    }
-
-    public int useSkill3() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("\u001B[34m" + name + "使用了" + skill3.name + "! 暴擊! 傷害" + skill3.damage * 2);
-            return skill3.damage * 2;
-        } else {
-            System.out.println("\u001B[34m" + name + "使用了" + skill3.name + "! 傷害" + skill3.damage);
-            return skill3.damage;
-        }
-
-    }
-
-    public int useSkill4() {
-        if (random.nextDouble() < rate) {// 40% 機率觸發技能
-            System.out.println("\u001B[34m" + name + "使用了" + skill4.name + "! 暴擊! 傷害" + skill4.damage * 2);
-            return skill4.damage * 2;
-        } else {
-            System.out.println("\u001B[34m" + name + "使用了" + skill4.name + "! 傷害" + skill4.damage);
-            return skill4.damage;
-        }
-
-    }
+    public abstract int useSkill1();
+    public abstract int useSkill2();
+    public abstract int useSkill3();
+    public abstract int useSkill4();
 
     //使用回血道具
     public int useHPprops() {
@@ -108,28 +69,28 @@ public abstract class Animal {
 
     //角色行動模組，透過user.choice決定行動方式
     public void judge(Animal user, Animal boss) {
-        if (user.choice == 1 && user.skill1.mpConsume <= user.mp) {
+        if (user.choice == 1 && user.skill1.mpConsume <= user.mp && user.skill1.useCount > 0) {
             user.mp -= user.skill1.mpConsume;
             System.out.print(ConsoleColor.PURPLE + "(玩家)" + ConsoleColor.RESET);
             boss.hp -= user.useSkill1();
             showAll(user, boss);
             System.out.println(ConsoleColor.BLUE + "敵方的回合" + ConsoleColor.RESET);
             user.hp -= bossAttack(boss);
-        } else if (user.choice == 2 && user.skill2.mpConsume <= user.mp) {
+        } else if (user.choice == 2 && user.skill2.mpConsume <= user.mp && user.skill2.useCount > 0) {
             user.mp -= user.skill2.mpConsume;
             System.out.print(ConsoleColor.PURPLE + "(玩家)" + ConsoleColor.RESET);
             boss.hp -= user.useSkill2();
             showAll(user, boss);
             System.out.println(ConsoleColor.BLUE + "敵方的回合" + ConsoleColor.RESET);
             user.hp -= bossAttack(boss);
-        } else if (user.choice == 3 && user.skill3.mpConsume <= user.mp) {
+        } else if (user.choice == 3 && user.skill3.mpConsume <= user.mp && user.skill3.useCount > 0) {
             user.mp -= user.skill3.mpConsume;
             System.out.print(ConsoleColor.PURPLE + "(玩家)" + ConsoleColor.RESET);
             boss.hp -= user.useSkill3();
             showAll(user, boss);
             System.out.println(ConsoleColor.BLUE + "敵方的回合" + ConsoleColor.RESET);
             user.hp -= bossAttack(boss);
-        } else if (user.choice == 4 && user.skill4.mpConsume <= user.mp) {
+        } else if (user.choice == 4 && user.skill4.mpConsume <= user.mp && user.skill4.useCount > 0) {
             user.mp -= user.skill4.mpConsume;
             System.out.print(ConsoleColor.PURPLE + "(玩家)" + ConsoleColor.RESET);
             boss.hp -= user.useSkill4();
@@ -184,10 +145,14 @@ public abstract class Animal {
 
     //顯示玩家角色技能及數值
     public void showSkill() {
-        System.out.println(ConsoleColor.YELLOW + "技能 1 : " + skill1.name + " 傷害 : " + skill1.damage + " MP : " + skill1.mpConsume);
-        System.out.println("技能 2 : " + skill2.name + " 傷害 : " + skill2.damage + " MP : " + skill2.mpConsume);
-        System.out.println("技能 3 : " + skill3.name + " 傷害 : " + skill3.damage + " MP : " + skill3.mpConsume);
-        System.out.println("技能 4 : " + skill4.name + " 傷害 : " + skill4.damage + " MP : " + skill4.mpConsume + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.YELLOW + "技能 1 : " + skill1.name);
+        System.out.println("傷害 : " + skill1.damage + " MP : " + skill1.mpConsume + " 施放次數 : " + skill1.useCount);
+        System.out.println("技能 2 : " + skill2.name);
+        System.out.println("傷害 : " + skill2.damage + " MP : " + skill2.mpConsume + " 施放次數 : " + skill2.useCount);
+        System.out.println("技能 3 : " + skill3.name);
+        System.out.println("傷害 : " + skill3.damage + " MP : " + skill3.mpConsume + " 施放次數 : " + skill3.useCount);
+        System.out.println("技能 4 : " + skill4.name);
+        System.out.println("傷害 : " + skill4.damage + " MP : " + skill4.mpConsume + " 施放次數 : " + skill4.useCount + ConsoleColor.RESET);
     }
 
     //顯示角色HP及MP

@@ -5,6 +5,7 @@ public class Skill {
     public String name;
     public int damage;
     public int mpConsume;
+    public int useCount;
 
 
 }
