@@ -219,23 +219,7 @@ public abstract class Animal {
         }
     }
 
-    //在角色清單顯示所有角色相關資訊
-    public abstract void showDetail();
 
-}
-
-//道具類別
-class Props {
-    public String name;
-    public int propsCount = 3;
-    public int recovery = 50;
-}
-
-//技能類別
-class Skill {
-    public String name;
-    public int damage;
-    public int mpConsume;
 }
 
 

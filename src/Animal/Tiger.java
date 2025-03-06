@@ -26,9 +26,5 @@ public class Tiger extends Animal {
 
     }
 
-    @Override
-    public void showDetail() {
-        showSkill();
-        System.out.println("-----------------------------------");
-    }
+
 }

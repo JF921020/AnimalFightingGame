@@ -120,6 +120,8 @@ public class Main {
                     scanner.close();
                     return;
                 }
+                player.HPprops.propsCount = 10;
+                player.MPprops.propsCount = 10;
                 while (nextDoor) {
                     Animal boss = getBoss(DoorNum);
                     System.out.println("-----------------------------------");
@@ -196,16 +198,20 @@ public class Main {
                 System.out.println(ConsoleColor.YELLOW + "角色資訊：" + ConsoleColor.RESET);
                 System.out.println(ConsoleColor.YELLOW + "狗:" + ConsoleColor.RESET);
                 Dog dog = new Dog();
-                dog.showDetail();
+                dog.showSkill();
+                System.out.println("-----------------------------------");
                 System.out.println(ConsoleColor.YELLOW + "貓:" + ConsoleColor.RESET);
                 Cat cat = new Cat();
-                cat.showDetail();
+                cat.showSkill();
+                System.out.println("-----------------------------------");
                 System.out.println(ConsoleColor.YELLOW + "熊:" + ConsoleColor.RESET);
                 Bear bear = new Bear();
-                bear.showDetail();
+                bear.showSkill();
+                System.out.println("-----------------------------------");
                 System.out.println(ConsoleColor.YELLOW + "老虎:" + ConsoleColor.RESET);
                 Tiger tiger = new Tiger();
-                tiger.showDetail();
+                tiger.showSkill();
+                System.out.println("-----------------------------------");
                 System.out.println(ConsoleColor.CYAN + "請重新選擇角色!" + ConsoleColor.RESET);
             } else if (choose >= 1 && choose <= 4) {
                 return getAnimal(choose);

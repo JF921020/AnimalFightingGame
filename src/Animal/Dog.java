@@ -28,9 +28,5 @@ public class Dog extends Animal {
 
     }
 
-    @Override
-    public void showDetail() {
-        showSkill();
-        System.out.println("-----------------------------------");
-    }
+
 }

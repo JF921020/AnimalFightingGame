@@ -26,10 +26,6 @@ public class Cat extends Animal {
 
     }
 
-    @Override
-    public void showDetail() {
-        showSkill();
-        System.out.println("-----------------------------------");
-    }
+
 }
 
