@@ -122,6 +122,10 @@ public class Main {
                 }
                 player.HPprops.propsCount = 10;
                 player.MPprops.propsCount = 10;
+                player.skill1.useCount *= 4;
+                player.skill2.useCount *= 4;
+                player.skill3.useCount *= 4;
+                player.skill4.useCount *= 4;
                 while (nextDoor) {
                     Animal boss = getBoss(DoorNum);
                     System.out.println("-----------------------------------");
