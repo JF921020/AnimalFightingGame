@@ -1,11 +1,12 @@
 package Animal;
 
-//技能類別
+import java.util.ArrayList;
+import java.util.List;
+
 public class Skill {
     public String name;
-    public int damage;
     public int mpConsume;
     public int useCount;
-
+    public String description;
 
 }

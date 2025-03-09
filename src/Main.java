@@ -10,7 +10,7 @@ public class Main {
 
 
         do {
-            System.out.print(ConsoleColor.GREEN + "請選擇遊戲模式(1.Random 2.Free 3.Full Random 4.Continuous): " + ConsoleColor.RESET);
+            System.out.print(ConsoleColor.GREEN + "請選擇遊戲模式(1.Random 2.Free 3.Full Random): " + ConsoleColor.RESET);
             int mode = scanner.nextInt();
             if (mode == 1) { //隨機敵人
                 Random random = new Random();
@@ -30,7 +30,7 @@ public class Main {
                 while (player.hp > 0 && boss.hp > 0) {
                     boss.choice = random.nextInt(4) + 1;
                     System.out.println(ConsoleColor.BLUE + "玩家的回合" + ConsoleColor.RESET);
-                    player.showSkill();
+                    System.out.println(player.showSkill());
                     System.out.print(ConsoleColor.GREEN + "請輸入技能編號(1~4): " + ConsoleColor.RESET);
                     player.choice = scanner.nextInt();
 
@@ -61,7 +61,7 @@ public class Main {
                 while (player.hp > 0 && boss.hp > 0) {
                     boss.choice = random.nextInt(4) + 1;
                     System.out.println(ConsoleColor.BLUE + "玩家的回合" + ConsoleColor.RESET);
-                    player.showSkill();
+                    System.out.println(player.showSkill());
                     System.out.print(ConsoleColor.GREEN + "請輸入技能編號(1~4): " + ConsoleColor.RESET);
                     player.choice = scanner.nextInt();
 
@@ -95,7 +95,7 @@ public class Main {
                 while (player.hp > 0 && boss.hp > 0) {
                     boss.choice = random.nextInt(4) + 1;
                     System.out.println(ConsoleColor.BLUE + "玩家的回合" + ConsoleColor.RESET);
-                    player.showSkill();
+                    System.out.println(player.showSkill());
                     System.out.print(ConsoleColor.GREEN + "請輸入技能編號(1~4): " + ConsoleColor.RESET);
                     player.choice = scanner.nextInt();
 
@@ -109,60 +109,6 @@ public class Main {
 
                 }
 
-            }
-            else if(mode == 4) {//連續戰鬥
-                Random random = new Random();
-                boolean nextDoor = true;
-                int DoorNum = 1;
-                Animal player = playerChoose();
-                if (player == null) {
-                    System.out.println(ConsoleColor.RED + "輸入不合法" + ConsoleColor.RESET);
-                    scanner.close();
-                    return;
-                }
-                player.HPprops.propsCount = 10;
-                player.MPprops.propsCount = 10;
-                player.skill1.useCount *= 4;
-                player.skill2.useCount *= 4;
-                player.skill3.useCount *= 4;
-                player.skill4.useCount *= 4;
-                while (nextDoor) {
-                    Animal boss = getBoss(DoorNum);
-                    System.out.println("-----------------------------------");
-                    System.out.println("-----------------------------------");
-                    while (player.hp > 0 && boss.hp > 0) {
-                        boss.choice = random.nextInt(4) + 1;
-                        System.out.println(ConsoleColor.BLUE + "玩家的回合" + ConsoleColor.RESET);
-                        player.showSkill();
-                        System.out.print(ConsoleColor.GREEN + "請輸入技能編號(1~4): " + ConsoleColor.RESET);
-                        player.choice = scanner.nextInt();
-
-                        player.judge(player, boss);
-
-                        if (player.hp <= 0) {
-                            System.out.println(ConsoleColor.RED + "你輸了" + ConsoleColor.RESET);
-                        } else if (boss.hp <= 0) {
-                            System.out.println(ConsoleColor.YELLOW + "你贏了" + ConsoleColor.RESET);
-                        }
-
-                    }
-
-                    if(player.hp == 0){
-                        System.out.println(ConsoleColor.RED + "連續戰鬥失敗" + ConsoleColor.RESET);
-                        break;
-                    }
-
-                    if(DoorNum != 4) {
-                        System.out.println(ConsoleColor.YELLOW + "進入下一關" + ConsoleColor.RESET);
-                        System.out.println(ConsoleColor.PURPLE + "玩家" + ConsoleColor.RESET);
-                        if (player.hp < 0) player.hp = 0;
-                        player.showHpAndMp(player.hp, player.maxHp, player.mp, player.maxMP);
-                    }
-                    if(DoorNum == 4) {
-                        nextDoor = false;
-                    }
-                    DoorNum++;
-                }
             }else {
                 System.out.println(ConsoleColor.YELLOW + "開發中~" + ConsoleColor.RESET);
             }
@@ -194,30 +140,9 @@ public class Main {
     public static Animal playerChoose() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print(ConsoleColor.GREEN + "請輸入想選的動物編號(1.狗 2.貓 3.熊 4.老虎 輸入5可以查看角色資訊): " + ConsoleColor.RESET);
+            System.out.print(ConsoleColor.GREEN + "請輸入想選的動物編號(1.狗 2.貓 3.熊 4.老虎): " + ConsoleColor.RESET);
             int choose = scanner.nextInt();
-
-            if (choose == 5) {
-                // 顯示所有角色資訊
-                System.out.println(ConsoleColor.YELLOW + "角色資訊：" + ConsoleColor.RESET);
-                System.out.println(ConsoleColor.YELLOW + "狗:" + ConsoleColor.RESET);
-                Dog dog = new Dog();
-                dog.showSkill();
-                System.out.println("-----------------------------------");
-                System.out.println(ConsoleColor.YELLOW + "貓:" + ConsoleColor.RESET);
-                Cat cat = new Cat();
-                cat.showSkill();
-                System.out.println("-----------------------------------");
-                System.out.println(ConsoleColor.YELLOW + "熊:" + ConsoleColor.RESET);
-                Bear bear = new Bear();
-                bear.showSkill();
-                System.out.println("-----------------------------------");
-                System.out.println(ConsoleColor.YELLOW + "老虎:" + ConsoleColor.RESET);
-                Tiger tiger = new Tiger();
-                tiger.showSkill();
-                System.out.println("-----------------------------------");
-                System.out.println(ConsoleColor.CYAN + "請重新選擇角色!" + ConsoleColor.RESET);
-            } else if (choose >= 1 && choose <= 4) {
+            if (choose >= 1 && choose <= 4) {
                 return getAnimal(choose);
             } else {
                 System.out.println(ConsoleColor.RED + "沒有這個角色!!!!" + ConsoleColor.RESET);
