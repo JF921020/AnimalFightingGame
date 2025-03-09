@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tooltip;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,6 +41,7 @@ public class BattleController implements Initializable {
         this.player = player;
         this.enemy = enemy;
         updateUI();
+
     }
 
     /**
@@ -47,7 +49,7 @@ public class BattleController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // 可在這裡放置額外初始化邏輯
+
     }
 
     /**
@@ -72,6 +74,14 @@ public class BattleController implements Initializable {
         skill2.setText(player.skill2.name+"\n"+"MP: "+player.skill2.mpConsume+"\n"+"剩餘施放次數: "+player.skill2.useCount);
         skill3.setText(player.skill3.name+"\n"+"MP: "+player.skill3.mpConsume+"\n"+"剩餘施放次數: "+player.skill3.useCount);
         skill4.setText(player.skill4.name+"\n"+"MP: "+player.skill4.mpConsume+"\n"+"剩餘施放次數: "+player.skill4.useCount);
+        Tooltip tooltip1 = new Tooltip(player.skill1.description);
+        skill1.setTooltip(tooltip1);
+        Tooltip tooltip2 = new Tooltip(player.skill2.description);
+        skill2.setTooltip(tooltip2);
+        Tooltip tooltip3 = new Tooltip(player.skill3.description);
+        skill3.setTooltip(tooltip3);
+        Tooltip tooltip4 = new Tooltip(player.skill4.description);
+        skill4.setTooltip(tooltip4);
 
     }
 
