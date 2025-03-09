@@ -13,12 +13,12 @@
    <children>
       <Pane prefHeight="700.0" prefWidth="900.0">
          <children>
-            <Label prefHeight="36.0" prefWidth="50.0" text="玩家">
+            <Label fx:id="playerNameLabel" prefHeight="36.0" prefWidth="148.0" text="玩家:">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label layoutX="850.0" prefHeight="36.0" prefWidth="50.0" text="敵方">
+            <Label fx:id="enemyNameLabel" layoutX="764.0" prefHeight="36.0" prefWidth="136.0" text="敵方:">
                <font>
                   <Font size="23.0" />
                </font>
