@@ -132,7 +132,6 @@ public class CharacterController {
         if (player != null) {
             setEnemy();
             System.out.println("選擇的角色：" + player.name);
-            openBattleScene();
         } else {
             chosenLabel.setText("請選擇角色！");
         }
@@ -158,6 +157,8 @@ public class CharacterController {
         });
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
+
+
     }
 
 

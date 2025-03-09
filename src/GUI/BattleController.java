@@ -3,6 +3,7 @@ package GUI;
 import Animal.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
@@ -24,6 +25,8 @@ public class BattleController implements Initializable {
     private ProgressBar enemyHP;
     @FXML
     private ProgressBar enemyMP;
+    @FXML
+    private Button skill1,skill2,skill3,skill4;
 
     // 玩家與敵人角色
     private Animal player;
@@ -52,27 +55,29 @@ public class BattleController implements Initializable {
      */
     private void updateUI() {
         if (player != null) {
-            playerNameLabel.setText(player.name);
+            playerNameLabel.setText("玩家: "+player.name);
             double playerHpRatio = (double) player.hp / player.maxHp;
             double playerMpRatio = (double) player.mp / player.maxMP;
             playerHP.setProgress(playerHpRatio);
             playerMP.setProgress(playerMpRatio);
         }
         if (enemy != null) {
-            enemyNameLabel.setText(enemy.name);
+            enemyNameLabel.setText("敵方: "+enemy.name);
             double enemyHpRatio = (double) enemy.hp / enemy.maxHp;
             double enemyMpRatio = (double) enemy.mp / enemy.maxMP;
             enemyHP.setProgress(enemyHpRatio);
             enemyMP.setProgress(enemyMpRatio);
         }
+        skill1.setText(player.skill1.name+"\n"+"MP: "+player.skill1.mpConsume+"\n"+"剩餘施放次數: "+player.skill1.useCount);
+        skill2.setText(player.skill2.name+"\n"+"MP: "+player.skill2.mpConsume+"\n"+"剩餘施放次數: "+player.skill2.useCount);
+        skill3.setText(player.skill3.name+"\n"+"MP: "+player.skill3.mpConsume+"\n"+"剩餘施放次數: "+player.skill3.useCount);
+        skill4.setText(player.skill4.name+"\n"+"MP: "+player.skill4.mpConsume+"\n"+"剩餘施放次數: "+player.skill4.useCount);
+
     }
 
     // 以下示範一個技能按鈕事件 (其他技能可依此模式撰寫)
     @FXML
     private void useSkill1() {
-        if (player == null || enemy == null) {
-            return;
-        }
         // 玩家先攻擊
         int damage = player.useSkill1(player, enemy);
         enemy.hp -= damage;
@@ -89,9 +94,7 @@ public class BattleController implements Initializable {
      * 檢查戰鬥是否結束，依據雙方血量決定勝負
      */
     private void checkBattleEnd() {
-        if (player.hp <= 0 && enemy.hp <= 0) {
-            System.out.println("同歸於盡！");
-        } else if (player.hp <= 0) {
+        if (player.hp <= 0) {
             System.out.println("玩家死亡，遊戲結束！");
         } else if (enemy.hp <= 0) {
             System.out.println("敵人死亡，玩家勝利！");

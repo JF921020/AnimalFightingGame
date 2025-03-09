@@ -27,10 +27,10 @@
             <ProgressBar fx:id="playerMP" layoutY="80.0" prefHeight="30.0" prefWidth="330.0" progress="1.0" />
             <ProgressBar fx:id="enemyHP" layoutX="550.0" layoutY="50.0" prefHeight="30.0" prefWidth="350.0" progress="1.0" />
             <ProgressBar fx:id="enemyMP" layoutX="570.0" layoutY="80.0" prefHeight="30.0" prefWidth="330.0" progress="1.0" />
-            <Button layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill1" />
-            <Button layoutX="180.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill3" />
-            <Button layoutX="360.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill4" />
-            <Button layoutX="540.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill2" />
+            <Button fx:id="skill1" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill1" />
+            <Button fx:id="skill2" layoutX="180.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill3" />
+            <Button fx:id="skill3" layoutX="360.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill4" />
+            <Button fx:id="skill4" layoutX="540.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill2" />
             <MenuButton layoutX="720.0" layoutY="550.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="180.0" text="道具">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
