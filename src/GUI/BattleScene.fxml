@@ -5,6 +5,7 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -25,21 +26,21 @@
             </Label>
             <ProgressBar fx:id="playerHP" layoutY="50.0" prefHeight="30.0" prefWidth="350.0" progress="1.0" />
             <ProgressBar fx:id="playerMP" layoutY="80.0" prefHeight="30.0" prefWidth="330.0" progress="1.0" />
-            <ProgressBar fx:id="enemyHP" layoutX="550.0" layoutY="50.0" prefHeight="30.0" prefWidth="350.0" progress="1.0" />
-            <ProgressBar fx:id="enemyMP" layoutX="570.0" layoutY="80.0" prefHeight="30.0" prefWidth="330.0" progress="1.0" />
-            <Button fx:id="skill1" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill1">
+            <ProgressBar fx:id="enemyHP" layoutX="550.0" layoutY="50.0" prefHeight="30.0" prefWidth="350.0" progress="1.0" rotate="-180.0" />
+            <ProgressBar fx:id="enemyMP" layoutX="570.0" layoutY="80.0" prefHeight="30.0" prefWidth="330.0" progress="1.0" rotate="-180.0" />
+            <Button fx:id="skill1" layoutY="550.0" mnemonicParsing="false" onAction="#useSkill1" prefHeight="150.0" prefWidth="180.0" text="skill1">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="skill2" layoutX="180.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill2">
+            <Button fx:id="skill2" layoutX="180.0" layoutY="550.0" mnemonicParsing="false" onAction="#useSkill2" prefHeight="150.0" prefWidth="180.0" text="skill2">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="skill3" layoutX="360.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill3">
+            <Button fx:id="skill3" layoutX="360.0" layoutY="550.0" mnemonicParsing="false" onAction="#useSkill3" prefHeight="150.0" prefWidth="180.0" text="skill3">
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button fx:id="skill4" layoutX="540.0" layoutY="550.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="180.0" text="skill4">
+            <Button fx:id="skill4" layoutX="540.0" layoutY="550.0" mnemonicParsing="false" onAction="#useSkill4" prefHeight="150.0" prefWidth="180.0" text="skill4">
                <font>
                   <Font size="18.0" />
                </font></Button>
@@ -56,6 +57,9 @@
                <font>
                   <Font size="28.0" />
                </font></Button>
+            <TextArea fx:id="battleLog" editable="false" layoutX="50.0" layoutY="453.0" prefHeight="70.0" prefWidth="800.0" wrapText="true" />
+
+
          </children></Pane>
    </children>
 </VBox>

@@ -1,14 +1,15 @@
 package GUI;
 
 import Animal.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
+import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class BattleController implements Initializable {
@@ -29,6 +30,9 @@ public class BattleController implements Initializable {
     @FXML
     private Button skill1,skill2,skill3,skill4;
 
+    @FXML
+    private TextArea battleLog;
+
     // 玩家與敵人角色
     private Animal player;
     private Animal enemy;
@@ -41,7 +45,10 @@ public class BattleController implements Initializable {
         this.player = player;
         this.enemy = enemy;
         updateUI();
+    }
 
+    private void appendToBattleLog(String message) {
+        battleLog.appendText(message + "\n");
     }
 
     /**
@@ -91,13 +98,88 @@ public class BattleController implements Initializable {
         // 玩家先攻擊
         int damage = player.useSkill1(player, enemy);
         enemy.hp -= damage;
-        // 若敵人仍存活，進行反擊
-        if (enemy.hp > 0) {
-            int enemyDamage = enemy.enemyAttack(enemy, player);
-            player.hp -= enemyDamage;
-        }
+        appendToBattleLog("玩家使用 " + player.skill1.name + "，對敵方造成 " + damage + " 傷害！");
+
+        // 敵人反擊
+        int damage1 = enemy.useSkill1(enemy, player);
+        player.hp -= damage1;
+        appendToBattleLog("敵方使用 " + enemy.skill1.name + "，對玩家造成 " + damage1 + " 傷害！");
+
+
         updateUI();
         checkBattleEnd();
+    }
+
+    @FXML
+    private void useSkill2() {
+        // 玩家先攻擊
+        int damage = player.useSkill2(player, enemy);
+        enemy.hp -= damage;
+        appendToBattleLog("玩家使用 " + player.skill2.name + "，對敵方造成 " + damage + " 傷害！");
+
+        // 敵人反擊
+        int damage1 = enemy.useSkill2(enemy, player);
+        player.hp -= damage1;
+        appendToBattleLog("敵方使用 " + enemy.skill2.name + "，對玩家造成 " + damage1 + " 傷害！");
+
+
+        updateUI();
+        checkBattleEnd();
+    }
+
+    @FXML
+    private void useSkill3() {
+        // 玩家先攻擊
+        int damage = player.useSkill3(player, enemy);
+        enemy.hp -= damage;
+        appendToBattleLog("玩家使用 " + player.skill3.name + "，對敵方造成 " + damage + " 傷害！");
+
+        // 敵人反擊
+        int damage1 = enemy.useSkill3(enemy, player);
+        player.hp -= damage1;
+        appendToBattleLog("敵方使用 " + enemy.skill3.name + "，對玩家造成 " + damage1 + " 傷害！");
+
+
+        updateUI();
+        checkBattleEnd();
+    }
+
+    @FXML
+    private void useSkill4() {
+        // 玩家先攻擊
+        int damage = player.useSkill4(player, enemy);
+        enemy.hp -= damage;
+        appendToBattleLog("玩家使用 " + player.skill4.name + "，對敵方造成 " + damage + " 傷害！");
+
+        // 敵人反擊
+        int damage1 = enemy.useSkill4(enemy, player);
+        player.hp -= damage1;
+        appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage1 + " 傷害！");
+
+
+        updateUI();
+        checkBattleEnd();
+    }
+
+    private void enemyAttack(){
+        int choose = new Random().nextInt(4)+1;
+        if(choose==1){
+            int damage = enemy.useSkill4(enemy, player);
+            player.hp -= damage;
+            appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
+        }else if(choose==2){
+            int damage = enemy.useSkill4(enemy, player);
+            player.hp -= damage;
+            appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
+        }else if(choose==3){
+            int damage = enemy.useSkill4(enemy, player);
+            player.hp -= damage;
+            appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
+        }else if(choose==4){
+            int damage = enemy.useSkill4(enemy, player);
+            player.hp -= damage;
+            appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
+        }
     }
 
     /**
@@ -105,10 +187,13 @@ public class BattleController implements Initializable {
      */
     private void checkBattleEnd() {
         if (player.hp <= 0) {
-            System.out.println("玩家死亡，遊戲結束！");
+            appendToBattleLog("玩家死亡，遊戲結束！");
         } else if (enemy.hp <= 0) {
-            System.out.println("敵人死亡，玩家勝利！");
+            appendToBattleLog("敵人死亡，玩家勝利！");
         }
         // 根據需要可進一步切換場景或顯示對話框
     }
+
+
+
 }

@@ -40,8 +40,32 @@ public class CharacterController {
         System.out.println("角色選擇畫面，當前模式：" + gameMode);
         user.setText("HP: "+"\n"+ "MP: "+"\n" + "爆擊機率: " + "\n" + "攻擊力: \n");
         enemyl.setText("HP: "+"\n"+ "MP: "+"\n" + "爆擊機率: " + "\n" + "攻擊力: \n");
-        if ("Random".equals(gameMode))
+        if (gameMode.equals("Random")){
             enemyRadio.setDisable(true);
+            setEnemy();
+        }else if( gameMode.equals("Full Random")){
+            int playerNum = random.nextInt(4)+1;
+            playerRadio.setSelected(false);
+            playerRadio.setDisable(true);
+            if(playerNum == 1){
+                player = new Dog();
+                chosenLabel.setText("目前選擇（玩家）：" + player.name);
+            }else if(playerNum == 2){
+                player = new Cat();
+                chosenLabel.setText("目前選擇（玩家）：" + player.name);
+            }
+            else if(playerNum == 3){
+                player = new Bear();
+                chosenLabel.setText("目前選擇（玩家）：" + player.name);
+            }else if(playerNum == 4){
+                player = new Tiger();
+                chosenLabel.setText("目前選擇（玩家）：" + player.name);
+            }
+            updateCharacterInfo();
+            enemyRadio.setDisable(true);
+            setEnemy();
+        }
+
 
     }
 
@@ -130,7 +154,6 @@ public class CharacterController {
     @FXML
     private void startBattle() {
         if (player != null) {
-            setEnemy();
             System.out.println("選擇的角色：" + player.name);
         } else {
             chosenLabel.setText("請選擇角色！");
@@ -139,6 +162,10 @@ public class CharacterController {
         countdownTime = 5;
         countdownLabel.setVisible(true);
         countdownLabel.setText(countdownTime + "秒後進入戰鬥");
+        playerRadio.setSelected(false);
+        playerRadio.setDisable(true);
+        enemyRadio.setSelected(false);
+        enemyRadio.setDisable(true);
 
         // 建立 Timeline 每秒更新一次倒數
         Timeline timeline = new Timeline();
