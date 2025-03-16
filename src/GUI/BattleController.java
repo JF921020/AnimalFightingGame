@@ -3,12 +3,18 @@ package GUI;
 import Animal.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 
@@ -96,18 +102,33 @@ public class BattleController implements Initializable {
     @FXML
     private void useSkill1() {
         // 玩家先攻擊
+        setSkillButtonsDisabled(true);
         int damage = player.useSkill1(player, enemy);
         enemy.hp -= damage;
         appendToBattleLog("玩家使用 " + player.skill1.name + "，對敵方造成 " + damage + " 傷害！");
 
-        // 敵人反擊
-        int damage1 = enemy.useSkill1(enemy, player);
-        player.hp -= damage1;
-        appendToBattleLog("敵方使用 " + enemy.skill1.name + "，對玩家造成 " + damage1 + " 傷害！");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
+            enemy.hp -= damage;
+            updateUI();
+            checkBattleEnd();
 
 
-        updateUI();
-        checkBattleEnd();
+            // 敵方攻擊
+            enemyAttack();
+
+            // 等待3秒後執行敵方 UI 更新
+            Timeline enemyTimeline = new Timeline(new KeyFrame(Duration.seconds(3), enemyEvent -> {
+                updateUI();
+                checkBattleEnd();
+            }));
+            enemyTimeline.setCycleCount(1);
+            enemyTimeline.play();
+
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
+
+        //
     }
 
     @FXML
@@ -117,14 +138,26 @@ public class BattleController implements Initializable {
         enemy.hp -= damage;
         appendToBattleLog("玩家使用 " + player.skill2.name + "，對敵方造成 " + damage + " 傷害！");
 
-        // 敵人反擊
-        int damage1 = enemy.useSkill2(enemy, player);
-        player.hp -= damage1;
-        appendToBattleLog("敵方使用 " + enemy.skill2.name + "，對玩家造成 " + damage1 + " 傷害！");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
+            enemy.hp -= damage;
+            updateUI();
+            checkBattleEnd();
 
 
-        updateUI();
-        checkBattleEnd();
+            // 敵方攻擊
+            enemyAttack();
+
+            // 等待3秒後執行敵方 UI 更新
+            Timeline enemyTimeline = new Timeline(new KeyFrame(Duration.seconds(3), enemyEvent -> {
+                updateUI();
+                checkBattleEnd();
+            }));
+            enemyTimeline.setCycleCount(1);
+            enemyTimeline.play();
+
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
     }
 
     @FXML
@@ -134,14 +167,26 @@ public class BattleController implements Initializable {
         enemy.hp -= damage;
         appendToBattleLog("玩家使用 " + player.skill3.name + "，對敵方造成 " + damage + " 傷害！");
 
-        // 敵人反擊
-        int damage1 = enemy.useSkill3(enemy, player);
-        player.hp -= damage1;
-        appendToBattleLog("敵方使用 " + enemy.skill3.name + "，對玩家造成 " + damage1 + " 傷害！");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
+            enemy.hp -= damage;
+            updateUI();
+            checkBattleEnd();
 
 
-        updateUI();
-        checkBattleEnd();
+            // 敵方攻擊
+            enemyAttack();
+
+            // 等待3秒後執行敵方 UI 更新
+            Timeline enemyTimeline = new Timeline(new KeyFrame(Duration.seconds(3), enemyEvent -> {
+                updateUI();
+                checkBattleEnd();
+            }));
+            enemyTimeline.setCycleCount(1);
+            enemyTimeline.play();
+
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
     }
 
     @FXML
@@ -151,35 +196,48 @@ public class BattleController implements Initializable {
         enemy.hp -= damage;
         appendToBattleLog("玩家使用 " + player.skill4.name + "，對敵方造成 " + damage + " 傷害！");
 
-        // 敵人反擊
-        int damage1 = enemy.useSkill4(enemy, player);
-        player.hp -= damage1;
-        appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage1 + " 傷害！");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
+            enemy.hp -= damage;
+            updateUI();
+            checkBattleEnd();
 
 
-        updateUI();
-        checkBattleEnd();
+            // 敵方攻擊
+            enemyAttack();
+
+            // 等待3秒後執行敵方 UI 更新
+            Timeline enemyTimeline = new Timeline(new KeyFrame(Duration.seconds(3), enemyEvent -> {
+                updateUI();
+                checkBattleEnd();
+            }));
+            enemyTimeline.setCycleCount(1);
+            enemyTimeline.play();
+
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
     }
 
     private void enemyAttack(){
         int choose = new Random().nextInt(4)+1;
         if(choose==1){
-            int damage = enemy.useSkill4(enemy, player);
+            int damage = enemy.useSkill1(enemy, player);
             player.hp -= damage;
-            appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
+            appendToBattleLog("敵方使用 " + enemy.skill1.name + "，對玩家造成 " + damage + " 傷害！");
         }else if(choose==2){
-            int damage = enemy.useSkill4(enemy, player);
+            int damage = enemy.useSkill2(enemy, player);
             player.hp -= damage;
-            appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
+            appendToBattleLog("敵方使用 " + enemy.skill2.name + "，對玩家造成 " + damage + " 傷害！");
         }else if(choose==3){
-            int damage = enemy.useSkill4(enemy, player);
+            int damage = enemy.useSkill3(enemy, player);
             player.hp -= damage;
-            appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
+            appendToBattleLog("敵方使用 " + enemy.skill3.name + "，對玩家造成 " + damage + " 傷害！");
         }else if(choose==4){
             int damage = enemy.useSkill4(enemy, player);
             player.hp -= damage;
             appendToBattleLog("敵方使用 " + enemy.skill4.name + "，對玩家造成 " + damage + " 傷害！");
         }
+        setSkillButtonsDisabled(false);
     }
 
     /**
@@ -191,9 +249,12 @@ public class BattleController implements Initializable {
         } else if (enemy.hp <= 0) {
             appendToBattleLog("敵人死亡，玩家勝利！");
         }
-        // 根據需要可進一步切換場景或顯示對話框
     }
 
-
-
+    private void setSkillButtonsDisabled(boolean disabled) {
+        skill1.setDisable(disabled);
+        skill2.setDisable(disabled);
+        skill3.setDisable(disabled);
+        skill4.setDisable(disabled);
+    }
 }
