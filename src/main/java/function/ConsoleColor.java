@@ -1,4 +1,4 @@
-package Animal;
+package Function;
 
 
 //主控台文字顏色
