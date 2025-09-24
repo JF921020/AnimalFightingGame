@@ -1,8 +1,4 @@
-<<<<<<< HEAD:src/main/java/function/Buff.java
-package Function;
-=======
-package Animal;
->>>>>>> sw-test/main:src/Animal/Buff.java
+package user.function;
 
 public class Buff {
     public int state;
