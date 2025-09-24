@@ -1,4 +1,4 @@
-# 動物對戰遊戲 (Java Console Game)
+# 動物對戰遊戲 (Java Console user.Game)
 
 ## 專案介紹
 這是一個以 **Java** 撰寫的文字介面 RPG 遊戲。玩家可以選擇不同的動物角色（Dog、Cat、Bear、Tiger）進行對戰，每個角色擁有獨特的技能與能力，並可進行回合制戰鬥。

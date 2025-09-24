@@ -1,9 +1,8 @@
 package user;
 
-import user.function.ConsoleColor;
-
 import java.util.Random;
 import java.util.logging.Logger;
+import user.function.*;
 
 public class Launcher {
     private static final Logger LOGGER = Logger.getLogger(Game.class.getName());

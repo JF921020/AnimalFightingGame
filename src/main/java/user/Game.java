@@ -1,6 +1,5 @@
 package user;
 
-
 import user.animal.*;
 import user.function.*;
 

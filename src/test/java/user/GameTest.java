@@ -36,7 +36,7 @@ class GameTest {
                 "4, Tiger, 老虎, 300, 100, 20, 0.1",
                 "99, TestAnimal, test-player, 10, 10000, 1000, 0"
         })
-        // 使用參數化測試，驗證 Game.playerChoose() 是否回傳正確角色
+        // 使用參數化測試，驗證 user.Game.playerChoose() 是否回傳正確角色
         void playerChoose(int input, String  expectedType, String expectedName, int expectedHp, int expectedMp, int expectedAtk, double expectedRate) {
             String simulatedInput = input + "\n";
             Scanner scanner = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));
@@ -59,7 +59,7 @@ class GameTest {
                 "4, Tiger, 老虎, 300, 100, 20, 0.1",
                 "99, TestAnimal, test-boss, 10, 10000, 10, 0"
         })
-        // 使用參數化測試，驗證 Game.playerChoose() 是否回傳正確角色
+        // 使用參數化測試，驗證 user.Game.playerChoose() 是否回傳正確角色
         void bossChoose(int input, String  expectedType, String expectedName, int expectedHp, int expectedMp, int expectedAtk, double expectedRate) {
             String simulatedInput = input + "\n";
             Scanner scanner = new Scanner(new ByteArrayInputStream(simulatedInput.getBytes()));

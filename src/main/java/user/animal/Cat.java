@@ -1,5 +1,4 @@
 package user.animal;
-import user.function.*;
 
 public class Cat extends Animal {
     public Cat() {
