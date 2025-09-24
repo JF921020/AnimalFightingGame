@@ -1,6 +1,8 @@
-package Animal;
+package user.animal;
 
-import Function.ConsoleColor;
+import user.function.*;
+
+import java.util.Random;
 
 public class Dog extends Animal {
     public Dog() {
@@ -8,14 +10,19 @@ public class Dog extends Animal {
         hp = 350;
         mp = 100;
         maxHp = 350;
-        int ATK = 15;
-        int maxATK = 15;
+        ATK = 15;
+        maxATK = 15;
         rate = 0.4;
         maxRate = 0.4;
         super.skill1.name = "血牙狩獵";
         super.skill2.name = "狂野突襲";
         super.skill3.name = "野獸咆哮";
         super.skill4.name = "裂喉撕咬";
+
+        super.skill1.damage = ATK;
+        super.skill2.damage = ATK * 2;
+        super.skill3.damage = 0;
+        super.skill4.damage = ATK * 3;
 
 
         super.skill1.description = "猛然撲向敵人，銜住要害並深深刺入，造成傷害。";
@@ -26,8 +33,9 @@ public class Dog extends Animal {
         showHpAndMp(hp, maxHp, mp, maxMP);
     }
 
+    /**Dog特殊技能，無傷害，可造成目標攻擊力降低一回合**/
     @Override
-    public int useSkill3(Animal user,Animal target) {
+    public int useSkill3(Animal user,Animal target, Random random) {
         if(user.mp >= user.skill3.mpConsume && user.skill3.useCount > 0){
             user.mp -= user.skill3.mpConsume;
             user.skill3.useCount--;
@@ -44,7 +52,7 @@ public class Dog extends Animal {
     }
 
     @Override
-    public int useSkill4(Animal user,Animal target) {
+    public int useSkill4(Animal user,Animal target, Random random) {
         if(user.mp >= user.skill4.mpConsume && user.skill4.useCount > 0){
             user.mp -= user.skill4.mpConsume;
             user.skill4.useCount--;

@@ -1,6 +1,8 @@
-package Animal;
+package user.animal;
 
-import Function.ConsoleColor;
+import user.function.*;
+
+import java.util.Random;
 
 public class Bear extends Animal {
     public Bear() {
@@ -8,14 +10,19 @@ public class Bear extends Animal {
         hp = 450;
         mp = 100;
         maxHp = 450;
-        int ATK = 12;
-        int maxATK = 12;
+        ATK = 12;
+        maxATK = 12;
         rate = 0.3;
         maxRate = 0.3;
         super.skill1.name = "巨熊衝撞";
         super.skill2.name = "熊爪橫掃";
         super.skill3.name = "大地震擊";
         super.skill4.name = "熊王之怒";
+
+        super.skill1.damage = ATK;
+        super.skill2.damage = ATK * 2;
+        super.skill3.damage = ATK * 2;
+        super.skill4.damage = ATK * 5;
 
         super.skill1.description = "以猛烈的撞擊攻擊敵人，造成物理傷害";
         super.skill2.description = "揮舞熊爪進行橫掃，造成大量傷害";
@@ -28,7 +35,7 @@ public class Bear extends Animal {
     }
 
     @Override
-    public int useSkill3(Animal user,Animal target) {
+    public int useSkill3(Animal user,Animal target, Random random) {
         if(user.mp >= user.skill3.mpConsume && user.skill3.useCount > 0){
             user.mp -= user.skill3.mpConsume;
             user.skill3.useCount--;
@@ -37,7 +44,7 @@ public class Bear extends Animal {
                 target.debuff.state = 2;
                 target.ATK =target.ATK / 10 * 8;
             }
-            target.debuff.duration = 1;
+            target.debuff.duration = 2;
             return user.ATK * 2;
         }else{
             System.out.println(ConsoleColor.RED + "技能施放失敗" + ConsoleColor.RESET);
@@ -46,7 +53,7 @@ public class Bear extends Animal {
     }
 
     @Override
-    public int useSkill4(Animal user,Animal target) {
+    public int useSkill4(Animal user,Animal target, Random random) {
         if(user.mp >= user.skill4.mpConsume && user.skill4.useCount > 0){
             user.mp -= user.skill4.mpConsume;
             user.skill4.useCount--;
@@ -54,7 +61,16 @@ public class Bear extends Animal {
             if(user.buff.state == 0){
                 user.buff.state = 1;
             }
-            user.buff.duration = 2;
+            user.buff.duration = 1;
+            int maxRecovery = user.maxHp-user.hp;
+            if(maxRecovery <= (user.maxHp/10)) {
+                user.hp = user.maxHp;
+                System.out.println(user.name+"回復了"+maxRecovery+"點生命值");
+            }
+            else{
+                user.hp += user.maxHp/10;
+                System.out.println(user.name+"回復了"+user.maxHp/10+"點生命值");
+            }
             return user.ATK * 5;
         }else{
             System.out.println(ConsoleColor.RED + "技能施放失敗" + ConsoleColor.RESET);

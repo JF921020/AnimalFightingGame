@@ -1,4 +1,5 @@
-package Animal;
+package user.animal;
+import user.function.*;
 
 public class Cat extends Animal {
     public Cat() {
@@ -6,8 +7,8 @@ public class Cat extends Animal {
         hp = 250;
         mp = 100;
         maxHp = 250;
-        int ATK = 15;
-        int maxATK = 15;
+        ATK = 15;
+        maxATK = 15;
         rate = 0.5;
         maxRate = 0.5;
         super.skill1.name = "銳爪撕裂";

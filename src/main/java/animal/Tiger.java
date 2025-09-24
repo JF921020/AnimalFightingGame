@@ -1,6 +1,8 @@
-package Animal;
+package user.animal;
 
-import Function.ConsoleColor;
+import user.function.*;
+
+import java.util.Random;
 
 public class Tiger extends Animal {
     public Tiger() {
@@ -8,8 +10,8 @@ public class Tiger extends Animal {
         hp = 300;
         mp = 100;
         maxHp = 300;
-        int ATK = 20;
-        int maxATK = 20;
+        ATK = 20;
+        maxATK = 20;
         rate = 0.1;
         maxRate = 0.1;
         super.skill1.name = "猛虎撲殺";
@@ -17,32 +19,28 @@ public class Tiger extends Animal {
         super.skill3.name = "猛虎怒吼";
         super.skill4.name = "疾風猛虎爪";
 
+        super.skill1.damage = ATK;
+        super.skill2.damage = ATK * 4;
+        super.skill3.damage = 0;
+        super.skill4.damage = ATK * 4;
+
         super.skill1.description = "對敵人造成重擊";
-        super.skill2.description = "快速連擊，高機率造成4次傷害";
+        super.skill2.description = "快速連擊，造成4次傷害";
         super.skill3.description = "釋放震撼怒吼，降低敵人攻擊力30%，持續2回合";
         super.skill4.description = "疾風般撕裂敵人防禦";
-
-
-
-
 
         showHpAndMp(hp, maxHp, mp, maxMP);
 
     }
 
     @Override
-    public int useSkill2(Animal user,Animal target) {
+    public int useSkill2(Animal user,Animal target, Random random) {
         if(user.mp >= user.skill2.mpConsume && user.skill2.useCount > 0){
             user.mp -= user.skill2.mpConsume;
             user.skill2.useCount--;
             int damage;
-            if (random.nextDouble() < 0.6) {
-                damage = user.ATK * 4;
-                System.out.println(ConsoleColor.BLUE + name +"使用了" + user.skill2.name + "! 造成4次攻擊! 傷害" + damage);
-            } else {
-                damage = user.ATK;
-                System.out.println(ConsoleColor.BLUE + name +"使用了" + user.skill2.name + "! 傷害" + damage);
-            }
+            damage = user.ATK * 4;
+            System.out.println(ConsoleColor.BLUE + name +"使用了" + user.skill2.name + "! 造成4次攻擊! 傷害" + damage);
             return damage;
         }else{
             System.out.println(ConsoleColor.RED + "技能施放失敗" + ConsoleColor.RESET);
@@ -51,7 +49,7 @@ public class Tiger extends Animal {
     }
 
     @Override
-    public int useSkill3(Animal user,Animal target) {
+    public int useSkill3(Animal user, Animal target, Random random) {
         if(user.mp >= user.skill3.mpConsume && user.skill3.useCount > 0){
             user.mp -= user.skill3.mpConsume;
             user.skill3.useCount--;
@@ -61,8 +59,6 @@ public class Tiger extends Animal {
                 target.ATK =target.ATK / 10 * 7;
             }
             target.debuff.duration = 1;
-
-
         }else{
             System.out.println(ConsoleColor.RED + "技能施放失敗" + ConsoleColor.RESET);
         }
