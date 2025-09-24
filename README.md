@@ -53,31 +53,6 @@ src/main/java/
 ### 2.執行Launcher.java
 ---
 
-## 🧪 測試建議
-- **角色技能測試**：Dog、Cat、Bear、Tiger 的技能是否正確。
-- **Buff/Props 測試**：狀態加成、道具效果是否正確。
-- **Game 模式測試**：Random / Free / Full Random 是否運作正常。
-- **例外處理測試**：非法輸入（非數字、超範圍數字）是否能正確處理。
-- **再次遊玩測試**：輸入 y/n 是否能正確控制流程。
-
-### ✅ JUnit 測試範例
-```java
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
-public class BuffTest {
-    @Test
-    void testAttackBuffIncreasesDamage() {
-        Dog dog = new Dog("TestDog", 100, 20);
-        Buff buff = new Buff("AttackUp", 5, "attack");
-        dog.applyBuff(buff);
-        assertEquals(25, dog.getAttackPower());
-    }
-}
-```
-
----
-
 ## 📌 未來可擴充功能
 - 加入更多角色與技能。
 - 擴展道具系統（如稀有裝備）。
