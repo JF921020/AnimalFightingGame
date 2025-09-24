@@ -48,17 +48,9 @@ src/main/java/
 ---
 
 ## ▶️ 執行方式
-### 1. 編譯
-```bash
-cd src/main/java
-javac animal/*.java function/*.java Game.java Launcher.java
-```
+### 1.透過IntelliJ IDEA 開啟專案
 
-### 2. 執行
-```bash
-java Launcher
-```
-
+### 2.執行Launcher.java
 ---
 
 ## 🧪 測試建議
